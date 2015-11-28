@@ -1,0 +1,28 @@
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:h="http://xmlns.jcp.org/jsf/html"
+  xmlns:p="http://primefaces.org/ui">
+<h:form>
+  <p:panelGrid cellpadding="5" styleClass="ui-noborder">
+    <f:facet name="header">
+      <p:row>
+        <p:column colspan="2"><h:outputText value="Login or Register" /></p:column>
+      </p:row>
+    </f:facet>
+    <p:row>
+      <p:column><p:outputLabel for="email" value="Email: " /></p:column>
+      <p:column><p:inputText id="email" value="#{login.email}" /></p:column>
+    </p:row>
+    <p:row>
+      <p:column><p:outputLabel for="passwd" value="Password: " /></p:column>
+      <p:column><p:password id="passwd" value="#{login.password}" /></p:column>
+    </p:row>
+    <p:row>
+      <p:column><p:commandButton action="#{login.login()}" ajax="false" value="Login" /></p:column>
+      <p:column><p:button outcome="/views/register.xhtml" value="Register" /></p:column>
+    </p:row>
+  </p:panelGrid>
+  <p:messages for="login" showDetail="true" autoUpdate="true" closable="true" />
+</h:form>
+</f:view>

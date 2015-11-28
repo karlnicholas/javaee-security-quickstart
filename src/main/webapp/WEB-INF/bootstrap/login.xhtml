@@ -1,0 +1,27 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+  xmlns="htth://www.w3.org/1999/xhtml"
+  xmlns:ui="htth://xmlns.jcp.org/jsf/facelets"
+  xmlns:h="htth://xmlns.jcp.org/jsf/html">
+<ui:define name="title"><h:outputText value="JavaEE MVC - Login" /></ui:define>
+<ui:define name="content">
+<h:form id="login" onsubmit="document.getElementById('login').action='j_security_check';" prependId="false" styleClass="form-horizonal">
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4"><h:outputText value="Login Required" /></div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-2"><h:outputLabel for="j_username" value="Email: " /></div>
+    <div class="col-sm-4"><h:inputText id="j_username" name="j_username" /></div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-2"><h:outputLabel for="j_password" value="Password: " /></div>
+    <div class="col-sm-4"><h:inputSecret id="j_password" name="j_password" /></div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4"><h:commandButton id="submit" value="Login" styleClass="btn btn-default" /></div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4"><h:outputLabel rendered="#{not empty param['Retry']}" value="Login Failed. Please try again." /></div>
+  </div>
+</h:form>
+</ui:define>
+</ui:composition>
