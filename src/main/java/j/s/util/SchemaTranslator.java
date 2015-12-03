@@ -1,4 +1,4 @@
-package js.util;
+package j.s.util;
 
 
 import java.io.*;
@@ -7,8 +7,8 @@ import org.hibernate.cfg.*;
 import org.hibernate.dialect.Dialect;
 import org.hibernate.engine.jdbc.internal.*;
 
-import js.model.Role;
-import js.model.User;
+import j.s.model.Role;
+import j.s.model.User;
 
 /**
  * This is just a utility for printing out the database drop and create scripts.

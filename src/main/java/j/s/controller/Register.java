@@ -1,4 +1,4 @@
-package js.controller;
+package j.s.controller;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -8,9 +8,9 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
-import js.facade.UserFacade;
-import js.model.User;
-import js.util.Resources;
+import j.s.facade.UserFacade;
+import j.s.model.User;
+import j.s.util.Resources;
 
 @Model
 public class Register {

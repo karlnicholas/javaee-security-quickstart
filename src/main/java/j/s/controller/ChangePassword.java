@@ -1,11 +1,11 @@
-package js.controller;
+package j.s.controller;
 
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
-import js.facade.UserFacade;
-import js.util.Resources;
+import j.s.facade.UserFacade;
+import j.s.util.Resources;
 
 /**
  * Controller for changing a user password with user and passwordConfirmation.

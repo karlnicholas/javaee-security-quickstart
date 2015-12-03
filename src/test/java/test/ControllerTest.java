@@ -30,10 +30,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import js.controller.*;
-import js.facade.*;
-import js.model.*;
-import js.util.*;
+import j.s.controller.*;
+import j.s.facade.*;
+import j.s.model.*;
+import j.s.util.*;
 
 @RunWith(Arquillian.class)
 public class ControllerTest {

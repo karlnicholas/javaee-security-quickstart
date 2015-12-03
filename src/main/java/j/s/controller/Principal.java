@@ -1,4 +1,4 @@
-package js.controller;
+package j.s.controller;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -8,8 +8,8 @@ import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import js.facade.UserFacade;
-import js.model.User;
+import j.s.facade.UserFacade;
+import j.s.model.User;
 
 /**
  * Support bean for views. Holds the currently logged in user, if any. 

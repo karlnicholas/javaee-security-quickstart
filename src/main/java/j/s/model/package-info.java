@@ -5,4 +5,4 @@
  * @author karl
  *
  */
-package js.facade;
+package j.s.model;

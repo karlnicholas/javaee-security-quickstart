@@ -1,4 +1,4 @@
-package js.controller;
+package j.s.controller;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
-import js.facade.RoleFacade;
-import js.facade.UserFacade;
-import js.model.User;
+import j.s.facade.RoleFacade;
+import j.s.facade.UserFacade;
+import j.s.model.User;
 
 /**
  * Controller to update User information.

@@ -1,4 +1,4 @@
-package js.controller;
+package j.s.controller;
 
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import js.util.Resources;
+import j.s.util.Resources;
 
 @Model
 public class Logout {

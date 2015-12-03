@@ -5,4 +5,4 @@
  * @author karl
  *
  */
-package js.model;
+package j.s.util;

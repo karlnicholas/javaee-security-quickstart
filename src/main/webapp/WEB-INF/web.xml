@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
- <display-name>Java EE Security Application</display-name>
- <description>Java EE with security and self registration</description>
+ <display-name>Java EE MVC Archetype</display-name>
+ <description>Java EE MVC quick-start archetype for user self registration and security</description>
  <context-param>
   <param-name>javax.faces.INTERPRET_EMPTY_STRING_SUBMITTED_VALUES_AS_NULL</param-name>
   <param-value>true</param-value>

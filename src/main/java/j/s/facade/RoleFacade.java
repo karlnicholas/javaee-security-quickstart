@@ -1,10 +1,10 @@
-package js.facade;
+package j.s.facade;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import js.model.Role;
+import j.s.model.Role;
 
 /**
  * This class is a singleton that loads and holds all Role definitions from 
