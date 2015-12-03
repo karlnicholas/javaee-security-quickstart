@@ -2,16 +2,17 @@
   xmlns="http://www.w3.org/1999/xhtml"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:h="http://xmlns.jcp.org/jsf/html"
-  xmlns:f="http://xmlns.jcp.org/jsf/core">
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 <ui:define name="title"><h:outputText value="JavaEE MVC - Home" /></ui:define>
 <ui:define name="content">
-<h:form >
+<h:form id="indexForm" >
     <div class="row">
-      <div class="col-sm-offset-2 col-sm-4"><p><h:outputText value="Welcome " /><h:outputText rendered="#{principal.loggedIn}" value="#{principal.user.firstName}." /></p></div>
+      <div class="col-sm-offset-2 col-sm-4"><p><h:outputText id="welcomeMessage" value="Welcome " /><h:outputText id="welcomeUserMessage" rendered="#{principal.loggedIn}" value="#{principal.user.firstName}." /></p></div>
     </div>
     <div class="row">
       <div class="col-sm-offset-2 col-sm-4">
-      <h:commandButton value="Show User Count" styleClass="btn btn-default" >
+      <h:commandButton id="showUserCount" value="Show User Count" styleClass="btn btn-default" >
         <f:ajax listener="#{index.updateUserCount()}" render="numberOfUsers" />
       </h:commandButton>
       </div>
