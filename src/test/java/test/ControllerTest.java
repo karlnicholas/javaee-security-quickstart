@@ -95,14 +95,16 @@ public class ControllerTest {
         assertEquals("There are 1 users", numberOfUsers.getText().trim());
         
         // login should fail
-        browser.get(deploymentUrl.toExternalForm() + "views/account.xhtml");        
+        // browser.get(deploymentUrl.toExternalForm() + "views/account.xhtml");
+        guardHttp(accountButton).click();
         loginsignupEmail.sendKeys("karl@karl.com");
         loginsignupPassword.sendKeys("1234");
         guardHttp(loginButton).click();
         assertEquals("Login Failed!", loginsignupMessages.getText().trim());
 
         // register a new user
-        browser.get(deploymentUrl.toExternalForm() + "views/register.xhtml");
+        // browser.get(deploymentUrl.toExternalForm() + "views/register.xhtml");
+        guardHttp(toRegisterButton).click();
         registerEmail.sendKeys("karl@karl.com");
         registerPassword.sendKeys("1234");
         registerFirstName.sendKeys("Karl");
@@ -119,18 +121,21 @@ public class ControllerTest {
         assertEquals("User Info Updated", detailMessages.getText().trim());
 
         // now two users should be registered
-        browser.get(deploymentUrl.toExternalForm() + "views/index.xhtml");
+        // browser.get(deploymentUrl.toExternalForm() + "views/index.xhtml");
+        guardHttp(homeButton).click();
         assertEquals("Welcome", welcomeMessage.getText().trim());
         assertEquals("Karl.", welcomeUserMessage.getText().trim());
         guardAjax(showUserCountButton).click();
         assertEquals("There are 2 users", numberOfUsers.getText().trim());
 
         // logout
-        browser.get(deploymentUrl.toExternalForm() + "views/account.xhtml");
+        // browser.get(deploymentUrl.toExternalForm() + "views/account.xhtml");
+        guardHttp(accountButton).click();
         guardHttp(logoutButton).click();
         
-        // change password
+        // attempt to bypass security to change password
         browser.get(deploymentUrl.toExternalForm() + "views/user/changepassword.xhtml");
+        assertTrue(loginSubmitButton.isDisplayed());
         // first login with j_security login form
         loginJ_username.sendKeys("karl@karl.com");
         loginJ_password.sendKeys("1234");
@@ -145,14 +150,16 @@ public class ControllerTest {
         guardHttp(logoutButton).click();
 
         // login should fail
-        browser.get(deploymentUrl.toExternalForm() + "views/account.xhtml");        
+        // browser.get(deploymentUrl.toExternalForm() + "views/account.xhtml");
+        guardHttp(accountButton).click();
         loginsignupEmail.sendKeys("admin");
         loginsignupPassword.sendKeys("admin");
         guardHttp(loginButton).click();
         assertTrue(adminButton.isDisplayed());
 
         // perform admin functions on user
-        browser.get(deploymentUrl.toExternalForm() + "views/admin/admin.xhtml");
+        // browser.get(deploymentUrl.toExternalForm() + "views/admin/admin.xhtml");
+        guardHttp(adminButton).click();
         guardHttp(promoteButton).click();
         assertEquals("User promoted to administrator", adminMessages.getText().trim());
         guardHttp(demoteButton).click();
@@ -161,11 +168,12 @@ public class ControllerTest {
         assertEquals("User removed", adminMessages.getText().trim());
 
         // logout
-        browser.get(deploymentUrl.toExternalForm() + "views/account.xhtml");
+        // browser.get(deploymentUrl.toExternalForm() + "views/account.xhtml");
+        guardHttp(accountButton).click();
         guardHttp(logoutButton).click();
 
         // only one user should be registered
-        browser.get(deploymentUrl.toExternalForm() + "");
+        guardHttp(homeButton).click();
         guardAjax(showUserCountButton).click();
         assertEquals("There are 1 users", numberOfUsers.getText().trim());
         
@@ -174,6 +182,10 @@ public class ControllerTest {
 
     @ArquillianResource private URL deploymentUrl;
 
+    // header tabs
+    @FindBy(id = "headerTabHome") private WebElement homeButton;
+    @FindBy(id = "headerTabAccount") private WebElement accountButton;
+    
     // index page
     @FindBy(id = "indexForm:welcomeMessage") private WebElement welcomeMessage;
     @FindBy(id = "indexForm:welcomeUserMessage") private WebElement welcomeUserMessage;
@@ -182,6 +194,7 @@ public class ControllerTest {
     
     // account page/loginsignup fragment
     @FindBy(id = "loginsignupForm:login") private WebElement loginButton;
+    @FindBy(id = "loginsignupForm:toRegister") private WebElement toRegisterButton;
     @FindBy(id = "loginsignupForm:email") private WebElement loginsignupEmail;
     @FindBy(id = "loginsignupForm:password") private WebElement loginsignupPassword;
     @FindBy(name = "loginsignupForm:messages") private WebElement loginsignupMessages;

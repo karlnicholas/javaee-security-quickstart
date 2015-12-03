@@ -21,14 +21,7 @@ import javax.inject.Inject;
 @Stateless
 public class UserFacade {
     @Inject EntityManager em;
-    @Inject RoleFacade roleFacade;
-    
-    public UserFacade() {}
-    // for testing
-    public UserFacade(EntityManager em) {
-        this.em = em;
-    }
-    
+
     /**
      * Register new users. Encodes the password and adds the "USER" role to the user's roles.
      * Returns null if user already exists.
@@ -49,7 +42,7 @@ public class UserFacade {
         byte[] hash = MessageDigest.getInstance("SHA-256").digest(user.getPassword().getBytes());
         user.setPassword( DatatypeConverter.printBase64Binary(hash) );
         // Add role "USER" to user.
-        Role role = roleFacade.getUserRole();
+        Role role = RoleFacade.getInstance(em).getUserRole();
         List<Role> roles = new ArrayList<Role>();
         roles.add(em.merge(role));
         user.setRoles(roles);
@@ -140,7 +133,7 @@ public class UserFacade {
     @RolesAllowed({"ADMIN"})
     public User promoteUser(Long id) {
         User user = em.find(User.class, id);
-        user.getRoles().add(roleFacade.getAdminRole());
+        user.getRoles().add(RoleFacade.getInstance(em).getAdminRole());
         return em.merge( user );
     }
     

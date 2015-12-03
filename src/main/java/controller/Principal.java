@@ -7,6 +7,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import facade.UserFacade;
 import model.User;
@@ -28,22 +29,28 @@ public class Principal {
     @PostConstruct
     public void postConstruct() {
         ExternalContext externalContext = context.getExternalContext();
-        user = (User)externalContext.getSessionMap().get("user");
-        // in case went to a specific URL
-        if ( user == null ) {
-            HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
-            java.security.Principal principal = request.getUserPrincipal();
-            if ( principal != null )
-                try {
-                    user = userFacade.findByEmail(principal.getName());
-                } catch (Exception ignored) {
-                    // logout whoever and set user to null.
+        HttpSession session = (HttpSession) externalContext.getSession(false);
+        if ( session != null ) {
+            user = (User)session.getAttribute("user");
+            // in case went to a specific URL
+            if ( user == null ) {
+                HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
+                java.security.Principal principal = request.getUserPrincipal();
+                if ( principal != null ) {
                     try {
-                        ((HttpServletRequest) externalContext.getRequest()).logout();
-                    } catch (ServletException alsoIgnored) {}
-                    externalContext.invalidateSession();
-                    user = null;
+                        user = userFacade.findByEmail(principal.getName());
+                    } catch (Exception ignored) {
+                        // logout whoever and set user to null.
+                        try {
+                            ((HttpServletRequest) externalContext.getRequest()).logout();
+                        } catch (ServletException alsoIgnored) {}
+                        externalContext.invalidateSession();
+                        user = null;
+                    }
                 }
+            }
+        } else {
+            user = null;
         }
     }
 
