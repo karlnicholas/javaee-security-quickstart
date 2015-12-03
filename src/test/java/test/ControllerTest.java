@@ -30,10 +30,10 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import controller.*;
-import facade.*;
-import model.*;
-import util.*;
+import js.controller.*;
+import js.facade.*;
+import js.model.*;
+import js.util.*;
 
 @RunWith(Arquillian.class)
 public class ControllerTest {
@@ -151,7 +151,7 @@ public class ControllerTest {
 
         // login should fail
         // browser.get(deploymentUrl.toExternalForm() + "views/account.xhtml");
-        guardHttp(accountButton).click();
+        // guardHttp(accountButton).click();
         loginsignupEmail.sendKeys("admin");
         loginsignupPassword.sendKeys("admin");
         guardHttp(loginButton).click();

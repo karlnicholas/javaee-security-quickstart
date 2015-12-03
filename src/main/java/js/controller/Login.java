@@ -1,4 +1,4 @@
-package controller;
+package js.controller;
 
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
@@ -8,8 +8,8 @@ import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import facade.UserFacade;
-import model.User;
+import js.facade.UserFacade;
+import js.model.User;
 
 /**
  * Controller for logging in a user from email and password fields.

@@ -1,9 +1,9 @@
-package controller;
+package js.controller;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 
-import facade.UserFacade;
+import js.facade.UserFacade;
 
 @Model
 public class Index {

@@ -1,4 +1,4 @@
-package facade;
+package js.facade;
 
 import java.io.IOException;
 import java.security.MessageDigest;
@@ -10,8 +10,8 @@ import java.util.List;
 import javax.persistence.*;
 import javax.xml.bind.DatatypeConverter;
 
-import model.Role;
-import model.User;
+import js.model.Role;
+import js.model.User;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;

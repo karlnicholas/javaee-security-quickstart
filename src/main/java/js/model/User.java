@@ -1,4 +1,4 @@
-package model;
+package js.model;
 
 import java.io.Serializable;
 import java.util.List;
