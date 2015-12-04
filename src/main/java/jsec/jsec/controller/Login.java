@@ -1,4 +1,4 @@
-package j.jsec.controller;
+package jsec.jsec.controller;
 
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
@@ -8,8 +8,8 @@ import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import j.jsec.facade.UserFacade;
-import j.jsec.model.User;
+import jsec.jsec.facade.UserFacade;
+import jsec.jsec.model.User;
 
 /**
  * Controller for logging in a user from email and password fields.

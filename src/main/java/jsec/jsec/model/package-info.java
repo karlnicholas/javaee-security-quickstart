@@ -5,4 +5,4 @@
  * @author karl
  *
  */
-package j.jsec.facade;
+package jsec.jsec.model;

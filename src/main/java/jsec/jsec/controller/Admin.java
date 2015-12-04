@@ -1,4 +1,4 @@
-package j.jsec.controller;
+package jsec.jsec.controller;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
-import j.jsec.facade.RoleFacade;
-import j.jsec.facade.UserFacade;
-import j.jsec.model.User;
+import jsec.jsec.facade.RoleFacade;
+import jsec.jsec.facade.UserFacade;
+import jsec.jsec.model.User;
 
 /**
  * Controller to update User information.

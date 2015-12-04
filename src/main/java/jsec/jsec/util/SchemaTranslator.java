@@ -1,4 +1,4 @@
-package j.jsec.util;
+package jsec.jsec.util;
 
 
 import java.io.*;
@@ -7,8 +7,8 @@ import org.hibernate.cfg.*;
 import org.hibernate.dialect.Dialect;
 import org.hibernate.engine.jdbc.internal.*;
 
-import j.jsec.model.Role;
-import j.jsec.model.User;
+import jsec.jsec.model.Role;
+import jsec.jsec.model.User;
 
 /**
  * This is just a utility for printing out the database drop and create scripts.

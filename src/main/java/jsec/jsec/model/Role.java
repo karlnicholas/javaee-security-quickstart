@@ -1,4 +1,4 @@
-package j.jsec.model;
+package jsec.jsec.model;
 
 import java.io.Serializable;
 
