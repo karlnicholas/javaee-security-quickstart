@@ -34,8 +34,8 @@ Create a project
 ```bash
     mvn archetype:generate \
         -DarchetypeGroupId=jsec \
-        -DarchetypeArtifactId=javaee-security \
-        -DarchetypeVersion=1.0.0 \
+        -DarchetypeArtifactId=javaee-security-archetype \
+        -DarchetypeVersion=1.0.0-SNAPSHOT \
         -DgroupId=my.groupid \
         -DartifactId=my-artifactId \
         -Dversion=version
@@ -57,10 +57,16 @@ Test the project
 First edit local wildfly server's standalone.xml configuration file to 
 add the javaee-security security-domain. See specific instructions above.
 Start the local wildfly server, e.g., $JBOSS_HOME/bin/standalone.sh
-If you want to watch it run the tests, then install firefox.
+If you want to watch it run the tests, then install the firefox browser.
 
+For headless testing, use:
 ```bash
-    mvn test -Parq-wildfly-remote[optionally:,firefox]
+    mvn test -Parq-wildfly-remote
+```
+
+For testing using firefox, use:
+```bash
+    mvn test -Parq-wildfly-remote,firefox
 ```
 
 Install the project

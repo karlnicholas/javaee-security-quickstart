@@ -4,10 +4,10 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>jsec</groupId>
 	<artifactId>javaee-security</artifactId>
-	<version>1.0.0</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>Java EE security quickstart</name>
-	<description>Java EE security quickstart for user self registration and security</description>
+	<name>Java EE MVC Security: Quickstart</name>
+	<description>Java EE MVC Security quickstart for user self registration and form based security.</description>
 	<licenses>
 		<license>
 			<name>Apache License, Version 2.0</name>
