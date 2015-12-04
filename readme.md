@@ -3,10 +3,14 @@ Java EE Security Quickstart Maven Archetype
 
 Summary
 -------
-The project is a Maven archetype for Java EE MVC web application.
+The project is a Maven archetype for Java EE MVC web application. The configuration in 
+this project is specific to Wildfly, so the instructions here are Wildfly specific. 
+
+Otherwise none of the code uses anything vender specific, so it is left up to the user 
+to port the configuration to any other Java EE compliant server.
 
 This project was inspired by kolorobot's Spring-Mvc-Quickstart-Archetype project.
-This readme.md started with kolorobot's Spring-Mvc-Quickstart-Archetype project.
+This readme.md started with the readme.md from the same.
 
 Generated project characteristics
 -------------------------
@@ -89,6 +93,17 @@ Start the local wildfly server, e.g., $JBOSS_HOME/bin/standalone.sh
 
     http://localhost:8080/jsec
 
+
+Uninstall the project
+----------------
+
+First edit local wildfly server's standalone.xml configuration file to 
+add the javaee-security security-domain. See specific instructions above.
+Start the local wildfly server, e.g., $JBOSS_HOME/bin/standalone.sh
+
+```bash
+    mvn wildfly:undeploy
+```
 
 Creating a new project in Eclipse
 ----------------------------------
