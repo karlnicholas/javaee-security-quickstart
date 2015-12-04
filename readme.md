@@ -77,7 +77,7 @@ add the javaee-security security-domain. See specific instructions above.
 Start the local wildfly server, e.g., $JBOSS_HOME/bin/standalone.sh
 
 ```bash
-    mvn wildfly:deploy
+    mvn install wildfly:deploy
 ```
 
 Test on the browser
