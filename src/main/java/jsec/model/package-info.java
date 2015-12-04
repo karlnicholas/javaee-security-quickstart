@@ -5,4 +5,4 @@
  * @author karl
  *
  */
-package jsec.jsec.model;
+package jsec.model;

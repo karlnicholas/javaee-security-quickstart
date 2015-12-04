@@ -1,9 +1,9 @@
-package jsec.jsec.controller;
+package jsec.controller;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 
-import jsec.jsec.facade.UserFacade;
+import jsec.facade.UserFacade;
 
 @Model
 public class Index {

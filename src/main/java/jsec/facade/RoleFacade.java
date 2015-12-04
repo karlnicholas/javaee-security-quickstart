@@ -1,10 +1,10 @@
-package jsec.jsec.facade;
+package jsec.facade;
 
 import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import jsec.jsec.model.Role;
+import jsec.model.Role;
 
 /**
  * This class is a singleton that loads and holds all Role definitions from 

@@ -1,4 +1,4 @@
-package jsec.jsec.facade;
+package jsec.facade;
 
 import java.io.IOException;
 import java.security.MessageDigest;
@@ -10,8 +10,8 @@ import java.util.List;
 import javax.persistence.*;
 import javax.xml.bind.DatatypeConverter;
 
-import jsec.jsec.model.Role;
-import jsec.jsec.model.User;
+import jsec.model.Role;
+import jsec.model.User;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
