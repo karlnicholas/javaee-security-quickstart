@@ -1,20 +1,21 @@
-Java EE MVC Quickstart Maven Archetype
+Java EE Security Quickstart Maven Archetype
 =========================================
 
 Summary
 -------
-The project (will be) is a Maven archetype for Java EE MVC web application.
+The project is a Maven archetype for Java EE MVC web application.
+
 This project was inspired by kolorobot's Spring-Mvc-Quickstart-Archetype project.
 This readme.md started with kolorobot's Spring-Mvc-Quickstart-Archetype project.
 
 Generated project characteristics
 -------------------------
 * Java EE MVC web application for Wildly 9 environment
-* JSF 2.2 with Bootstrap
+* JSF 2.2 and Bootstrap
 * JPA 2.1
 * H2DB (H2 Development Database) 
 * JUnit/Arquillian/Drone/Graphene for testing
-* Java EE Security with Database Module 
+* Java EE Security Supported by JBoss/Wildfly Database Module 
 
 Installation
 ------------
@@ -22,8 +23,8 @@ Installation
 To install the archetype in your local repository execute following commands:
 
 ```bash
-    git clone https://github.com/knicholas/javaee-mvc-quickstart-archetype.git
-    cd javaee-mvc-quickstart-archetype
+    git clone https://github.com/knicholas/javaee-security-archetype.git
+    cd javaee-security-archetype
     mvn clean install
 ```
 
@@ -32,28 +33,56 @@ Create a project
 
 ```bash
     mvn archetype:generate \
-        -DarchetypeGroupId=javaee-mvc-archetypes \
-        -DarchetypeArtifactId=javaee-mvc-quickstart \
+        -DarchetypeGroupId=jsec \
+        -DarchetypeArtifactId=javaee-security \
         -DarchetypeVersion=1.0.0 \
         -DgroupId=my.groupid \
         -DartifactId=my-artifactId \
         -Dversion=version
 ```
 
-Run the project
+Install the security-domain
 ----------------
 
+The jboss-security-domain.xml is the xml fragment that needs to be
+copied to the wildfly server's configuration file, typically
+standalone.xml. Find the <security-domains> section of the
+configuration file and insert the contents of the jboss-security-domain.xml
+into the section as a new <security-domain>. This could conceivably be 
+done through wildfly commands, but I haven't sorted that out yet.   
+
+Test the project
+----------------
+
+First edit local wildfly server's standalone.xml configuration file to 
+add the javaee-security security-domain. See specific instructions above.
+Start the local wildfly server, e.g., $JBOSS_HOME/bin/standalone.sh
+If you want to watch it run the tests, then install firefox.
+
 ```bash
-    mvn test wildfly:deploy
+    mvn test -Parq-wildfly-remote[optionally:,firefox]
+```
+
+Install the project
+----------------
+
+First edit local wildfly server's standalone.xml configuration file to 
+add the javaee-security security-domain. See specific instructions above.
+Start the local wildfly server, e.g., $JBOSS_HOME/bin/standalone.sh
+
+```bash
+    mvn wildfly:deploy
 ```
 
 Test on the browser
 -------------------
 
-    http://localhost:8080/javaee-mvc
+First edit local wildfly server's standalone.xml configuration file to 
+add the javaee-security security-domain. See specific instructions above.
+Start the local wildfly server, e.g., $JBOSS_HOME/bin/standalone.sh
 
-Note: Wildfly security-domain configuration is required to run the application. 
-See src/main/webapp/WEB-INF/jboss-security-domain.xml
+    http://localhost:8080/jsec
+
 
 Creating a new project in Eclipse
 ----------------------------------
@@ -62,7 +91,5 @@ Creating a new project in Eclipse
 * Install the archetype in local repository with `mvn install`
 * Go to `Preferences > Maven > Archetypes` and `Add Local Catalog`
 * Select the catalog from file (`archetype-catalog.xml`) 
-* Create new Maven project and select the archetype (remember so select `Include snapshot archetypes`)
-
-If you have any troubles with installation in Eclipse, you may want to have a look at this issue: #74
+* Create new Maven project and select the archetype
 

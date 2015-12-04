@@ -44,7 +44,7 @@ public class ControllerTest {
 
         final PomEquippedResolveStage pom = Maven.resolver().loadPomFromFile("pom.xml");
         
-        return ShrinkWrap.create(WebArchive.class, "javaee-security.war")
+        return ShrinkWrap.create(WebArchive.class, "jsec.war")
             .addAsLibraries(
                 pom.resolve("org.webjars:bootstrap:3.3.5").withoutTransitivity().as(JavaArchive.class)
             )
