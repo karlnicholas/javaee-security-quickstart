@@ -1,4 +1,4 @@
-package j.s.model;
+package j.jsec.model;
 
 import java.io.Serializable;
 

@@ -1,11 +1,11 @@
-package j.s.controller;
+package j.jsec.controller;
 
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.inject.Inject;
 
-import j.s.facade.UserFacade;
-import j.s.util.Resources;
+import j.jsec.facade.UserFacade;
+import j.jsec.util.Resources;
 
 /**
  * Controller to update User information.

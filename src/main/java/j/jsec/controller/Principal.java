@@ -1,4 +1,4 @@
-package j.s.controller;
+package j.jsec.controller;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -8,8 +8,8 @@ import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import j.s.facade.UserFacade;
-import j.s.model.User;
+import j.jsec.facade.UserFacade;
+import j.jsec.model.User;
 
 /**
  * Support bean for views. Holds the currently logged in user, if any. 
