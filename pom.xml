@@ -6,8 +6,8 @@
     <groupId>jsec</groupId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>Java EE MVC Archetype</name>
-    <description>Java EE MVC quick-start archetype for user self registration and security</description>
+    <name>Java EE security archetype</name>
+    <description>Java EE security archetype for user self registration and security</description>
     <licenses>
         <license>
             <name>Apache License, Version 2.0</name>
