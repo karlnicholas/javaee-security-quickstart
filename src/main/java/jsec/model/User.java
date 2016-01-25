@@ -85,7 +85,7 @@ public class User implements Serializable {
     }
     /**
      * Set User's Password
-     * @param password
+     * @param password field.
      */
     public void setPassword(String password) {
         this.password = password;

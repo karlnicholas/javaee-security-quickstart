@@ -97,7 +97,7 @@ public class UserFacade {
 
     /**
      * Delete User by Database Id
-     * @param id
+     * @param id of User
      */
     @RolesAllowed({"ADMIN"})
     public void delete(Long id) {
@@ -106,7 +106,7 @@ public class UserFacade {
     
     /**
      * Find User by Database Id
-     * @param id
+     * @param id of user.
      * @return User or null if not exists
      */
     @RolesAllowed({"ADMIN"})

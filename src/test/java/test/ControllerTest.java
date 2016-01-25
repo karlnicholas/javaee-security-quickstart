@@ -43,6 +43,11 @@ import jsec.facade.*;
 import jsec.model.*;
 import jsec.util.*;
 
+/**
+ * Test the website with arquillian, drone, and sellium.
+ * @author Karl Nicholas.
+ *
+ */
 @RunWith(Arquillian.class)
 public class ControllerTest {
     private static final String WEBAPP_SRC = "src/main/webapp";

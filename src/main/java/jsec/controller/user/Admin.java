@@ -24,7 +24,7 @@ public class Admin extends Principal {
 
     /**
      * Return a list of users
-     * @return List<User> users
+     * @return List of users
      */
     public List<User> getUsers() {
         return userFacade.findAll();
