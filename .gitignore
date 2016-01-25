@@ -5,3 +5,4 @@
 .tern-project
 /db-schema.sql
 /src/main/webapp/WEB-INF/.faces-config.xml.jsfdia
+/doc/

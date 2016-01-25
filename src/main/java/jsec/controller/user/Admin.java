@@ -1,4 +1,4 @@
-package jsec.controller;
+package jsec.controller.user;
 
 import java.util.List;
 
@@ -31,8 +31,8 @@ public class Admin extends Principal {
     }
 
     /**
-     * Remove a user based on email.
-     * @param email
+     * Remove a user based on id.
+     * @param id of User to be removed.
      */
     public void removeUser(Long id) {
         if ( getUser().getId() == id ) throw new RuntimeException("Cannot change current user!");
@@ -41,8 +41,8 @@ public class Admin extends Principal {
     }
 
     /**
-     * Promote user to administrator based on email
-     * @param email
+     * Promote user to administrator based on id
+     * @param id of User to be promoted.
      */
     public void promoteUser(Long id) {
         if ( getUser().getId() == id ) return;
@@ -51,8 +51,8 @@ public class Admin extends Principal {
     }
 
     /**
-     * Demote a user, based on email, by removing ADMIN role.
-     * @param email
+     * Demote a user, based on id, by removing ADMIN role.
+     * @param id of User to be demoted. 
      */
     public void demoteUser(Long id) {
         if ( getUser().getId() == id ) return;

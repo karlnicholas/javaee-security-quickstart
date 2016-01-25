@@ -1,4 +1,4 @@
-package jsec.controller;
+package jsec.controller.user;
 
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
@@ -28,7 +28,7 @@ public class Login {
     /**
      * Login a user using the email and password fields.
      * 
-     * @return Navigation to /views/account.xhtml
+     * @return String navigation to /views/account.xhtml
      */
     public String login() {
         ExternalContext externalContext = context.getExternalContext();
@@ -49,7 +49,7 @@ public class Login {
 
     /**
      * Email Field
-     * @return Email
+     * @return Email field.
      */
     public String getEmail() {
         return email;
@@ -57,7 +57,7 @@ public class Login {
 
     /**
      * Email Field
-     * @param email
+     * @param email field.
      */
     public void setEmail(String email) {
         this.email = email;
@@ -65,7 +65,7 @@ public class Login {
 
     /**
      * Password Field
-     * @return Password
+     * @return Password field.
      */
     public String getPassword() {
         return password;
@@ -73,7 +73,7 @@ public class Login {
 
     /**
      * Password Field
-     * @param password
+     * @param password field.
      */
     public void setPassword(String password) {
         this.password = password;

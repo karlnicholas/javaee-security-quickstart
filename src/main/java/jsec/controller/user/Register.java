@@ -1,4 +1,4 @@
-package jsec.controller;
+package jsec.controller.user;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.inject.Model;
@@ -28,7 +28,7 @@ public class Register {
     /**
      * Register a new user
      * 
-     * @return Navigation to /views/account.xhtml
+     * @return String navigation to /views/account.xhtml
      */
     public String register() {
         try {
@@ -56,14 +56,14 @@ public class Register {
 
     /**
      * New User Field
-     * @return newUser
+     * @return newUser field.
      */
     public User getNewUser() {
         return newUser;
     }
     /**
      * New User Field
-     * @param newUser
+     * @param newUser field.
      */
     public void setNewUser(User newUser) {
         this.newUser = newUser;

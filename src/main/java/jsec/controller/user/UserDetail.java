@@ -1,4 +1,4 @@
-package jsec.controller;
+package jsec.controller.user;
 
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;

@@ -11,6 +11,12 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
+/**
+ * Role Entity. Holds list of unique Role Strings.
+ *  
+ * @author Karl Nicholas
+ *
+ */
 @SuppressWarnings("serial")
 @Table(name = "role")
 @Entity
@@ -36,7 +42,7 @@ public class Role implements Serializable {
     }
     /**
      * Set Role Name
-     * @param role
+     * @param role Role
      */
     public void setRole(String role) {
         this.role = role;

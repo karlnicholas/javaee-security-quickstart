@@ -25,13 +25,12 @@ public class UserFacade {
     /**
      * Register new users. Encodes the password and adds the "USER" role to the user's roles.
      * Returns null if user already exists.
-     * @param user
-     * @return user with role added and password encoded, unless user already exists, then null.
-     * @throws NoSuchAlgorithmException 
-     * @throws IOException 
+     * @param user {@link User} to be encoded.
+     * @return {@link User} with role added and password encoded, unless user already exists, then null.
+     * @throws NoSuchAlgorithmException If configuration wrong. 
      */
     @PermitAll
-    public User encodeAndSave(User user) throws NoSuchAlgorithmException, IOException {
+    public User encodeAndSave(User user) throws NoSuchAlgorithmException {
         // sanity check to see if user already exists.
         TypedQuery<Long> q = em.createNamedQuery(User.COUNT_EMAIL, Long.class).setParameter("email", user.getEmail());
         if ( q.getSingleResult().longValue() > 0L ) {
@@ -63,13 +62,12 @@ public class UserFacade {
 
     /**
      * Update the User's password
-     * @param user
-     * @return Updated User
-     * @throws IOException
-     * @throws NoSuchAlgorithmException
+     * @param user User to update
+     * @return User Updated User
+     * @throws NoSuchAlgorithmException if no implementation for SHA-256 algorithm. 
      */
     @RolesAllowed({"USER"})
-    public User updatePassword(User user) throws IOException, NoSuchAlgorithmException {
+    public User updatePassword(User user) throws NoSuchAlgorithmException {
         byte[] hash = MessageDigest.getInstance("SHA-256").digest(user.getPassword().getBytes());
         user.setPassword( DatatypeConverter.printBase64Binary(hash) ); 
         return em.merge(user);
@@ -77,8 +75,8 @@ public class UserFacade {
 
     /**
      * Merge user with Database
-     * @param user
-     * @return Merged User
+     * @param user User to merge
+     * @return User Merged User
      */
     @RolesAllowed({"USER"})
     public User merge(User user) {
@@ -87,8 +85,8 @@ public class UserFacade {
     
     /**
      * return User for email.
-     * @param email
-     * @return User
+     * @param email User email to search for.
+     * @return User found for email.
      */
     @RolesAllowed({"USER"})
     public User findByEmail(String email) {
@@ -126,9 +124,9 @@ public class UserFacade {
     }
     
     /**
-     * Promote User by Database Id
-     * @param id
-     * @return User or null if not exists
+     * Promote User to Admin by Database Id
+     * @param id of User to be promoted.
+     * @return User or null if not exists.
      */
     @RolesAllowed({"ADMIN"})
     public User promoteUser(Long id) {
@@ -138,8 +136,8 @@ public class UserFacade {
     }
     
     /**
-     * Demote User by Database Id
-     * @param id
+     * Demote User to User by Database Id
+     * @param id of User to be demoted.
      * @return User or null if not exists
      */
     @RolesAllowed({"ADMIN"})
@@ -154,9 +152,9 @@ public class UserFacade {
     }
 
     /**
-     * Manually encode a password
-     * @param args
-     * @throws Exception
+     * Manually encode a password.
+     * @param args nothing.
+     * @throws Exception if anything wrong.
      */
     public static void main(String[] args) throws Exception {
         byte[] hash = MessageDigest.getInstance("SHA-256").digest("admin".getBytes());

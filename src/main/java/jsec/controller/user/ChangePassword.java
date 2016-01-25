@@ -1,4 +1,4 @@
-package jsec.controller;
+package jsec.controller.user;
 
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
@@ -21,7 +21,7 @@ public class ChangePassword extends Principal {
     
     /**
      * Check user.password against passwordConfirmation, encode password, and merge user.
-     * @return Navigation to /views/account.xhtml
+     * @return String navigation to /views/account.xhtml
      */
     public String updatePassword() {
         try {
@@ -43,7 +43,7 @@ public class ChangePassword extends Principal {
 
     /**
      * Password Confirmation Field
-     * @return passwordConfirmation
+     * @return passwordConfirmation field.
      */
     public String getPasswordConfirmation() {
         return passwordConfirmation;
@@ -51,7 +51,7 @@ public class ChangePassword extends Principal {
 
     /**
      * Password Confirmation Field
-     * @param passwordConfirmation
+     * @param passwordConfirmation field.
      */
     public void setPasswordConfirmation(String passwordConfirmation) {
         this.passwordConfirmation = passwordConfirmation;
