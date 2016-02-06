@@ -2,9 +2,10 @@ package jsec.controller.user;
 
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
-import jsec.facade.UserFacade;
+import jsec.bean.UserSessionBean;
 import jsec.util.Resources;
 
 /**
@@ -16,7 +17,8 @@ import jsec.util.Resources;
 @Model
 public class UserDetail extends Principal {
     
-    @Inject UserFacade userFacade;
+    @Inject private FacesContext context;
+    @Inject private UserSessionBean userBean;
 
     /**
      * Update/merge user fields
@@ -25,7 +27,7 @@ public class UserDetail extends Principal {
     public String update() {
         try {
             // update user
-            userFacade.merge(getUser());
+            userBean.merge(getUser());
         } catch (Exception e) {
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Update unsuccessful", Resources.getRootErrorMessage(e)));
             return null;

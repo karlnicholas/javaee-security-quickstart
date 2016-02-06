@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
-import jsec.facade.UserFacade;
+import jsec.bean.UserSessionBean;
 import jsec.model.User;
 
 /**
@@ -21,8 +21,8 @@ import jsec.model.User;
 @Model
 public class Principal {
     
-    @Inject FacesContext context;
-    @Inject UserFacade userFacade;
+    @Inject private FacesContext context;
+    @Inject private UserSessionBean userBean;
     private User user;
         
     @PostConstruct
@@ -35,7 +35,7 @@ public class Principal {
             java.security.Principal principal = request.getUserPrincipal();
             if ( principal != null ) {
                 try {
-                    user = userFacade.findByEmail(principal.getName());
+                    user = userBean.findByEmail(principal.getName());
                 } catch (Exception ignored) {
                     // logout whoever and set user to null.
                     try {

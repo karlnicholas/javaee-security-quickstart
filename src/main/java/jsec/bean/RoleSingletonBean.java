@@ -1,7 +1,10 @@
-package jsec.facade;
+package jsec.bean;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.Singleton;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import jsec.model.Role;
@@ -15,19 +18,16 @@ import jsec.model.Role;
  * @author Karl Nicholas
  *
  */
-public final class RoleFacade {
-    private static EntityManager em;
+@Singleton
+public final class RoleSingletonBean {
     private List<Role> allRoles;
-    //private constructor to avoid client applications to use constructor
-    private RoleFacade(){
+    @Inject private EntityManager em;
+    /**
+     * load all roles 
+     */
+    @PostConstruct
+    protected void postConstruct() {
         allRoles = em.createNamedQuery(Role.LIST_AVAILABLE, Role.class).getResultList();
-    }
-    private static class SingletonHelper {
-        private static final RoleFacade INSTANCE = new RoleFacade();
-    }
-    public static RoleFacade getInstance(EntityManager em){
-        RoleFacade.em = em;
-        return SingletonHelper.INSTANCE;
     }
     /**
      * Get the USER Role

@@ -1,6 +1,5 @@
-package jsec.facade;
+package jsec.bean;
 
-import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -18,9 +17,18 @@ import javax.annotation.security.RolesAllowed;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 
+/**
+ * Session bean for accessing user functions. Register new users with encodeAndSave, which 
+ * encodes the password. Some functions are accessible only by ADMIN roles, 
+ * such as promote, demote and delete users. encodeAndSave and userCount is globally accessible.
+ *   
+ * @author Karl Nicholas
+ *
+ */
 @Stateless
-public class UserFacade {
-    @Inject EntityManager em;
+public class UserSessionBean {
+    @Inject private EntityManager em;
+    @Inject private RoleSingletonBean roleBean;
 
     /**
      * Register new users. Encodes the password and adds the "USER" role to the user's roles.
@@ -41,7 +49,7 @@ public class UserFacade {
         byte[] hash = MessageDigest.getInstance("SHA-256").digest(user.getPassword().getBytes());
         user.setPassword( DatatypeConverter.printBase64Binary(hash) );
         // Add role "USER" to user.
-        Role role = RoleFacade.getInstance(em).getUserRole();
+        Role role = roleBean.getUserRole();
         List<Role> roles = new ArrayList<Role>();
         roles.add(em.merge(role));
         user.setRoles(roles);
@@ -131,7 +139,7 @@ public class UserFacade {
     @RolesAllowed({"ADMIN"})
     public User promoteUser(Long id) {
         User user = em.find(User.class, id);
-        user.getRoles().add(RoleFacade.getInstance(em).getAdminRole());
+        user.getRoles().add(roleBean.getAdminRole());
         return em.merge( user );
     }
     

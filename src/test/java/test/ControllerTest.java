@@ -31,6 +31,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import jsec.bean.*;
 import jsec.controller.*;
 import jsec.controller.user.Admin;
 import jsec.controller.user.ChangePassword;
@@ -39,7 +40,6 @@ import jsec.controller.user.Logout;
 import jsec.controller.user.Principal;
 import jsec.controller.user.Register;
 import jsec.controller.user.UserDetail;
-import jsec.facade.*;
 import jsec.model.*;
 import jsec.util.*;
 
@@ -67,8 +67,8 @@ public class ControllerTest {
             .addClasses(
                     User.class, 
                     Role.class, 
-                    UserFacade.class, 
-                    RoleFacade.class, 
+                    UserSessionBean.class, 
+                    RoleSingletonBean.class, 
                     Resources.class, 
                     Admin.class, 
                     ChangePassword.class, 
