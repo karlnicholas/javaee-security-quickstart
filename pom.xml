@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>jsec</groupId>
   <artifactId>javaee-security</artifactId>
-  <version>0.0.3-SNAPSHOT</version>
+  <version>0.0.3</version>
   <packaging>war</packaging>
   <name>Java EE MVC Security: Quickstart</name>
   <description>Java EE MVC Security quickstart for user self registration and form based security.</description>
