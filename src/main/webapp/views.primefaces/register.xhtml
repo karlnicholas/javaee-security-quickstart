@@ -1,4 +1,4 @@
-<ui:composition template="/views/template/template.xhtml"
+<ui:composition template="/WEB-INF/template/template.xhtml"
   xmlns="http://www.w3.org/1999/xhtml"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -6,7 +6,7 @@
   xmlns:p="http://primefaces.org/ui">
 <ui:define name="title">Java EE MVC - Register</ui:define>
 <ui:define name="content">
-<h:form id="registerForm" >
+<h:form id="register" >
   <p:panelGrid cellpadding="5" styleClass="ui-noborder">
     <f:facet name="header">
       <p:row>
@@ -14,27 +14,27 @@
       </p:row>
     </f:facet>
     <p:row>
-      <p:column><p:outputLabel for="email" value="Email: " /></p:column>
+      <p:column><p:outputLabel value="Email: " /></p:column>
       <p:column><p:inputText id="email" value="#{register.newUser.email}" /></p:column>
       <p:column><p:message for="email"/></p:column>
     </p:row>
     <p:row>
-      <p:column><p:outputLabel for="password" value="Password: " /></p:column>
+      <p:column><p:outputLabel value="Password: " /></p:column>
       <p:column><p:password id="password" value="#{register.newUser.password}" /></p:column>
       <p:column><p:message for="password"/></p:column>
     </p:row>
     <p:row>
-      <p:column><p:outputLabel for="firstName" value="First Name: " /></p:column>
-      <p:column><p:inputText id="firstName" value="#{register.newUser.firstName}" /></p:column>
+      <p:column><p:outputLabel value="First Name: " /></p:column>
+      <p:column><p:inputText value="#{register.newUser.firstName}" /></p:column>
       <p:column><p:spacer/></p:column>
     </p:row>
     <p:row>
-      <p:column><p:outputLabel for="lastName" value="Last Name: " /></p:column>
-      <p:column><p:inputText id="lastName" value="#{register.newUser.lastName}" /></p:column>
+      <p:column><p:outputLabel value="Last Name: " /></p:column>
+      <p:column><p:inputText value="#{register.newUser.lastName}" /></p:column>
       <p:column><p:spacer/></p:column>
     </p:row>
     <p:row>
-      <p:column><p:commandButton id="register" action="#{register.register()}" ajax="false" value="Register"/></p:column>
+      <p:column><p:commandButton action="#{register.register()}" ajax="false" value="Register"/></p:column>
       <p:column><p:button outcome="/views/account.xhtml" value="Cancel"/></p:column>
       <p:column><p:spacer/></p:column>
     </p:row>

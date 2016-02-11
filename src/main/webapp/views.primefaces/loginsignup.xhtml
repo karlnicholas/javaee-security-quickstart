@@ -2,9 +2,8 @@
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
   xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html"
-  xmlns:p="http://primefaces.org/ui"
-  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
-<h:form id="loginsignupForm">
+  xmlns:p="http://primefaces.org/ui">
+<h:form>
   <p:panelGrid cellpadding="5" styleClass="ui-noborder">
     <f:facet name="header">
       <p:row>
@@ -16,14 +15,14 @@
       <p:column><p:inputText id="email" value="#{login.email}" /></p:column>
     </p:row>
     <p:row>
-      <p:column><p:outputLabel for="password" value="Password: " /></p:column>
-      <p:column><p:password id="password" value="#{login.password}" /></p:column>
+      <p:column><p:outputLabel for="passwd" value="Password: " /></p:column>
+      <p:column><p:password id="passwd" value="#{login.password}" /></p:column>
     </p:row>
     <p:row>
-      <p:column><p:commandButton id="login" action="#{login.login()}" ajax="false" value="Login" /></p:column>
-      <p:column><p:button id="toRegister" outcome="/views/register.xhtml" value="Register" /></p:column>
+      <p:column><p:commandButton action="#{login.login()}" ajax="false" value="Login" /></p:column>
+      <p:column><p:button outcome="/views/register.xhtml" value="Register" /></p:column>
     </p:row>
   </p:panelGrid>
-  <p:messages pt:name="loginsignupForm:messages" for="login" showDetail="true" autoUpdate="true" closable="true" />
+  <p:messages for="login" showDetail="true" autoUpdate="true" closable="true" />
 </h:form>
 </f:view>

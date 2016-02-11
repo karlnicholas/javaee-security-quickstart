@@ -1,10 +1,10 @@
-Java EE Security Quickstart Maven Archetype
+Java EE MVC Quickstart Maven Archetype
 =========================================
 
 Summary
 -------
 This project is a Maven archetype for Java EE MVC web application that 
-implements Java EE security features. The project allows users to self-register 
+implements Java EE Security features. The project allows users to self-register 
 at the website. User information is stored in a database and new users are 
 assigned the USER role. The project configures FORM based security for 
 protection of specified views(URLs). Additionally, an ADMIN role is defined 
@@ -43,7 +43,7 @@ Generated project characteristics
 * JPA 2.1
 * H2DB (H2 Development Database) 
 * JUnit/Arquillian/Drone/Graphene for testing
-* Java EE Security Supported by JBoss/Wildfly Database Module 
+* Java EE MVC Supported by JBoss/Wildfly Database Module 
 
 Installation
 ------------
