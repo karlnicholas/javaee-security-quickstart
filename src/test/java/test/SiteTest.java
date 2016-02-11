@@ -31,17 +31,17 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-import jsec.bean.*;
-import jsec.controller.*;
-import jsec.controller.user.Admin;
-import jsec.controller.user.ChangePassword;
-import jsec.controller.user.Login;
-import jsec.controller.user.Logout;
-import jsec.controller.user.Principal;
-import jsec.controller.user.Register;
-import jsec.controller.user.UserDetail;
-import jsec.model.*;
-import jsec.util.*;
+import controller.*;
+import controller.user.Admin;
+import controller.user.ChangePassword;
+import controller.user.Login;
+import controller.user.Logout;
+import controller.user.Principal;
+import controller.user.Register;
+import controller.user.UserDetail;
+import model.*;
+import service.*;
+import util.*;
 
 /**
  * Test the website with arquillian, drone, and sellium.
@@ -49,7 +49,7 @@ import jsec.util.*;
  *
  */
 @RunWith(Arquillian.class)
-public class ControllerTest {
+public class SiteTest {
     private static final String WEBAPP_SRC = "src/main/webapp";
     
     @Deployment(testable = false)

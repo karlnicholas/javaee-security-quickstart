@@ -1,4 +1,4 @@
-package jsec.bean;
+package service;
 
 import java.util.List;
 
@@ -7,7 +7,7 @@ import javax.ejb.Singleton;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
-import jsec.model.Role;
+import model.Role;
 
 /**
  * This class is a singleton that loads and holds all Role definitions from 

@@ -3,4 +3,4 @@
  * @author Karl Nicholas
  *
  */
-package jsec.controller.user;
+package controller.user;

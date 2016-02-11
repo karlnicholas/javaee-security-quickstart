@@ -1,9 +1,9 @@
-package jsec.controller;
+package controller;
 
 import javax.enterprise.inject.Model;
 import javax.inject.Inject;
 
-import jsec.bean.UserSessionBean;
+import service.UserSessionBean;
 
 @Model
 public class Index {

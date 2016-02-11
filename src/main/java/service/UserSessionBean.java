@@ -1,4 +1,4 @@
-package jsec.bean;
+package service;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -9,8 +9,8 @@ import java.util.List;
 import javax.persistence.*;
 import javax.xml.bind.DatatypeConverter;
 
-import jsec.model.Role;
-import jsec.model.User;
+import model.Role;
+import model.User;
 
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;

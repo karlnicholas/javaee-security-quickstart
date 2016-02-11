@@ -3,4 +3,4 @@
  * @author Karl Nicholas
  *
  */
-package jsec.util;
+package util;

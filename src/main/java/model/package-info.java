@@ -3,4 +3,4 @@
  * @author Karl Nicholas
  *
  */
-package jsec.model;
+package model;

@@ -1,12 +1,12 @@
-package jsec.controller.user;
+package controller.user;
 
 import javax.enterprise.inject.Model;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
-import jsec.bean.UserSessionBean;
-import jsec.util.Resources;
+import service.UserSessionBean;
+import util.Resources;
 
 /**
  * Controller to update User information.

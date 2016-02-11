@@ -1,4 +1,4 @@
-package jsec.controller;
+package controller;
 
 import javax.enterprise.inject.Model;
 import javax.faces.component.UIComponent;
