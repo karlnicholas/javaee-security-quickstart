@@ -18,9 +18,8 @@
     also be a challenge for the application developer to maintain useful and current testing.</p> 
     <p>The front end is implemented with twitter bootstrap. Care was taken to insure that JSF and Java conventions 
     don't interfere with bootstrap and jquerys' needs, so that those resoures are references with html scripting tags.<p>
-    <p> There is also a primefaces version stashed away in the WEB-INF/primefaces directory. 
-    In there is are alternative template and views directories. Move to the webapp directory, overwriting the bootstrap 
-    versions and restart the application.</p>
+    <p> There is also a primefaces version stashed away in the webapp/views.primefaces directory. 
+    Copy to the webapp/views directory, overwriting the bootstrap versions and restart the application.</p>
     <p>To extend the model create new model entities and add service beans. Add controllers in support of new views.
     As the application grows it might be a good idea to move navigation into faces-config.xml. Often, more sophisticated 
     functionality requires more specialized view models, which should be made as simple POJO's in a separate package, 

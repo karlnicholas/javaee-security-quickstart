@@ -1,26 +1,23 @@
-<ui:composition template="/views/template/template.xhtml" 
+<ui:composition template="/views/template/template.xhtml"
   xmlns="http://www.w3.org/1999/xhtml"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html"
-  xmlns:p="http://primefaces.org/ui"
-  xmlns:pt="http://xmlns.jcp.org/jsf/passthrough">
+  xmlns:f="http://xmlns.jcp.org/jsf/core"
+  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
 <ui:define name="title"><h:outputText value="Java EE MVC - Admin" /></ui:define>
 <ui:define name="content">
-<h3><h:outputText value=""/></h3>
 <h:form id="adminForm">
-  <p:dataTable id="users" value="#{admin.users}" var="u">
-    <f:facet name="header"><h:outputText value="Administer Users" /></f:facet>
-    <p:column headerText="Email"><h:outputText value="#{u.email}" /></p:column>
-    <p:column headerText="First Name"><h:outputText value="#{u.firstName}" /></p:column>
-    <p:column headerText="Last Name"><h:outputText value="#{u.lastName}" /></p:column>
-    <p:column headerText="Role">
-      <p:commandButton id="promote" rendered="#{not u.admin and (admin.user.id ne u.id )}" action="#{admin.promoteUser(u.id)}" ajax="false" value="Promote" styleClass="smallButton" />
-      <p:commandButton id="demote" rendered="#{u.admin and (admin.user.id ne u.id )}" action="#{admin.demoteUser(u.id)}" ajax="false" value="Demote" styleClass="smallButton"/>
-    </p:column>
-    <p:column headerText="Remove"><p:commandButton id="remove" rendered="#{admin.user.id ne u.id}" action="#{admin.removeUser(u.id)}" ajax="false" value="Remove"  styleClass="smallButton"/></p:column>
-  </p:dataTable>
-  <p:messages pt:name="adminForm:messages" for="admin" showDetail="true" autoUpdate="true" closable="true" />
-  </h:form>
+  <h:dataTable id="users" value="#{admin.users}" var="u" styleClass="table">
+    <h:column><f:facet name="header">Email</f:facet><h:outputText value="#{u.email}" /></h:column>
+    <h:column><f:facet name="header">First Name</f:facet><h:outputText value="#{u.firstName}" /></h:column>
+    <h:column><f:facet name="header">Last Name</f:facet><h:outputText value="#{u.lastName}" /></h:column>
+    <h:column><f:facet name="header">Role</f:facet>
+      <h:commandButton id="promote" rendered="#{not u.admin and (admin.user.id ne u.id )}" action="#{admin.promoteUser(u.id)}" value="Promote" styleClass="btn btn-xs" />
+      <h:commandButton id="demote" rendered="#{u.admin and (admin.user.id ne u.id )}" action="#{admin.demoteUser(u.id)}" value="Demote" styleClass="btn btn-xs" />
+    </h:column>
+    <h:column><f:facet name="header">Remove</f:facet><h:commandButton id="remove" rendered="#{admin.user.id ne u.id}" action="#{admin.removeUser(u.id)}" value="Remove" styleClass="btn btn-xs" /></h:column>
+  </h:dataTable>
+  <h:messages p:name="adminForm:messages" globalOnly="true" showDetail="true" />
+</h:form>
 </ui:define>
 </ui:composition>

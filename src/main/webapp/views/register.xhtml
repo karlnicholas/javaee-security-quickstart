@@ -1,45 +1,41 @@
 <ui:composition template="/views/template/template.xhtml"
   xmlns="http://www.w3.org/1999/xhtml"
   xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-  xmlns:f="http://xmlns.jcp.org/jsf/core"
   xmlns:h="http://xmlns.jcp.org/jsf/html"
-  xmlns:p="http://primefaces.org/ui">
-<ui:define name="title">Java EE MVC - Register</ui:define>
+  xmlns:p="http://xmlns.jcp.org/jsf/passthrough">
+<ui:define name="title"><h:outputText value="Java EE MVC - Register" /></ui:define>
 <ui:define name="content">
-<h:form id="registerForm" >
-  <p:panelGrid cellpadding="5" styleClass="ui-noborder">
-    <f:facet name="header">
-      <p:row>
-        <p:column colspan="3"><h:outputText value="Register" /></p:column>
-      </p:row>
-    </f:facet>
-    <p:row>
-      <p:column><p:outputLabel for="email" value="Email: " /></p:column>
-      <p:column><p:inputText id="email" value="#{register.newUser.email}" /></p:column>
-      <p:column><p:message for="email"/></p:column>
-    </p:row>
-    <p:row>
-      <p:column><p:outputLabel for="password" value="Password: " /></p:column>
-      <p:column><p:password id="password" value="#{register.newUser.password}" /></p:column>
-      <p:column><p:message for="password"/></p:column>
-    </p:row>
-    <p:row>
-      <p:column><p:outputLabel for="firstName" value="First Name: " /></p:column>
-      <p:column><p:inputText id="firstName" value="#{register.newUser.firstName}" /></p:column>
-      <p:column><p:spacer/></p:column>
-    </p:row>
-    <p:row>
-      <p:column><p:outputLabel for="lastName" value="Last Name: " /></p:column>
-      <p:column><p:inputText id="lastName" value="#{register.newUser.lastName}" /></p:column>
-      <p:column><p:spacer/></p:column>
-    </p:row>
-    <p:row>
-      <p:column><p:commandButton id="register" action="#{register.register()}" ajax="false" value="Register"/></p:column>
-      <p:column><p:button outcome="/views/account.xhtml" value="Cancel"/></p:column>
-      <p:column><p:spacer/></p:column>
-    </p:row>
-  </p:panelGrid>
-  <p:messages for="register" showDetail="true" autoUpdate="true" closable="true" />
+<h:form id="registerForm" styleClass="form-horizontal">
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-4"><h:outputText value="Register" styleClass="control-label"/></div>
+  </div>
+  <div class="form-group #{jsfUtil.isValid('registerForm:email')?'':'has-error'}">
+    <h:outputLabel for="email" value="Email:" styleClass="col-sm-2 control-label"/>
+    <div class="col-sm-4"><h:inputText id="email" value="#{register.newUser.email}" styleClass="form-control" p:aria-describedby="registerForm:helpforemail"/>
+      <h:message id="helpforemail" styleClass="help-block" for="email"/>
+    </div>
+  </div>
+  <div class="form-group #{jsfUtil.isValid('registerForm:password')?'':'has-error'}">
+    <h:outputLabel for="password" value="Password:" styleClass="col-sm-2 control-label"/>
+    <div class="col-sm-4"><h:inputSecret id="password" value="#{register.newUser.password}" styleClass="form-control" p:aria-describedby="registerForm:helpforpassword"/>
+      <h:message id="helpforpassword" styleClass="help-block" for="password"/>
+    </div>
+  </div>
+  <div class="form-group">
+    <h:outputLabel for="firstName" value="First Name:" styleClass="col-sm-2 control-label"/>
+    <div class="col-sm-4"><h:inputText id="firstName" value="#{register.newUser.firstName}" styleClass="form-control"/></div>
+  </div>
+  <div class="form-group">
+    <h:outputLabel for="lastName" value="Last Name:" styleClass="col-sm-2 control-label"/>
+    <div class="col-sm-4"><h:inputText id="lastName" value="#{register.newUser.lastName}" styleClass="form-control"/></div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-2"><h:commandButton id="register" action="#{register.register()}" value="Register" class="btn btn-default"/></div>
+    <div class="col-sm-2"><h:button outcome="/views/account.xhtml" value="Cancel" class="btn"/></div>
+  </div>
+  <div class="form-group">
+    <h:messages globalOnly="true" showDetail="true" styleClass="col-sm-offset-2 col-sm-4" />
+  </div>
 </h:form>
 </ui:define>
 </ui:composition>

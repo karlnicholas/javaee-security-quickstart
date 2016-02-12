@@ -86,7 +86,7 @@ public class SiteTest {
             .merge(ShrinkWrap.create(GenericArchive.class).as(ExplodedImporter.class)
                     .importDirectory(WEBAPP_SRC).as(GenericArchive.class),
                     "/", Filters.include(".*\\.xhtml$"))
-            .addAsWebResource(new File(WEBAPP_SRC, "resources/img/javaee.png"), "resources/img/javaee.png")
+            .addAsWebResource(new File(WEBAPP_SRC, "resources/img/javaee-bs.png"), "resources/img/javaee-bs.png")
             .addAsWebInfResource(new File(WEBAPP_SRC, "WEB-INF/beans.xml"))
             .addAsWebInfResource(new File(WEBAPP_SRC, "WEB-INF/faces-config.xml"))
             .addAsWebInfResource(new File(WEBAPP_SRC, "WEB-INF/jboss-web.xml"))
