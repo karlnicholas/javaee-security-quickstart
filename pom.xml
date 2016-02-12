@@ -2,11 +2,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.github</groupId>
+  <groupId>com.github.javaee-mvc-quickstart</groupId>
   <artifactId>javaee-mvc-quickstart</artifactId>
   <version>1.0.0</version>
   <packaging>war</packaging>
-  <name>Java EE MVC Security: Quickstart</name>
+  <name>Java EE MVC Quickstart</name>
   <description>Java EE MVC Quickstart with user accounts and accesss security.</description>
   <licenses>
     <license>
@@ -245,7 +245,7 @@
       </build>
     </profile>
   </profiles>
-  <url>http://mvc-jsec.rhcloud.com</url>
+  <url>http://mvc-javaee.rhcloud.com</url>
   <scm>
     <url>https://github.com/karlnicholas/javaee-security-archetype.git</url>
   </scm>
