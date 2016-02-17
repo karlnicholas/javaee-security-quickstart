@@ -15,6 +15,14 @@
       <url>http://www.apache.org/licenses/LICENSE-2.0.html</url>
     </license>
   </licenses>
+  <url>http://mvc-jsec.rhcloud.com</url>
+  <scm>
+    <url>https://github.com/karlnicholas/javaee-security-quickstart-archetype.git</url>
+  </scm>
+  <organization>
+    <name>Karl Nicholas</name>
+    <url>https://github.com/karlnicholas</url>
+  </organization>
   <properties>
     <!-- Define the version of the arquillian BOMs we want to import to specify tested stacks. -->
     <version.org.wildfly.wildfly-arquillian>8.2.1.Final</version.org.wildfly.wildfly-arquillian>
@@ -261,12 +269,4 @@
       </build>
     </profile>
   </profiles>
-  <url>http://mvc-jsec.rhcloud.com</url>
-  <scm>
-    <url>https://github.com/karlnicholas/javaee-security-quickstart-archetype.git</url>
-  </scm>
-  <organization>
-    <name>Karl Nicholas</name>
-    <url>https://github.com/karlnicholas</url>
-  </organization>
 </project>
