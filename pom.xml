@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.github.karlnicholas</groupId>
   <artifactId>javaee-security-quickstart</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <packaging>war</packaging>
   <name>Java EE MVC Security Quickstart</name>
   <description>Java EE MVC quickstart with form based security and user self-registration pages.</description>
