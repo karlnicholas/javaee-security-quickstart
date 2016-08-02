@@ -33,7 +33,7 @@ public class AccountsController {
     private String passwordConfirmation;
     
     @PostConstruct
-    public void initNewUser() {
+    public void postConstruct() {
         ExternalContext externalContext = context.getExternalContext();
         currentUser = (User)externalContext.getSessionMap().get("user");
         // in case went to a specific URL
