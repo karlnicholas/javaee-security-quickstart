@@ -1,12 +1,12 @@
 package controller;
 
-import javax.enterprise.inject.Model;
+import javax.faces.bean.ManagedBean;
 import javax.inject.Inject;
 
 import service.UserSessionBean;
 
-@Model
-public class Index {
+@ManagedBean
+public class IndexController {
     
     @Inject private UserSessionBean userBean;
     

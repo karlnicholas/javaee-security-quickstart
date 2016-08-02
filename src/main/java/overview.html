@@ -10,8 +10,8 @@
     the controllers to the model. The service/RoleSingletonBean is implemented as a Singleton because roles are static
     in this application: they are loaded on initialization and never change.</p>  
     <p>The security is configured in WEB-INF/web.xml and enforced by the container via the security-domain configuration. 
-    the webapp/views directory is not restricted, the webapp/views/user directory is restricted to accounts with a "USER"
-    role, and the webapp/views/admin directory is restricted to accounts with a "ADMIN" role. Security annotations are 
+    the webapp/views directory is not restricted, the webapp/views/acounts/user directory is restricted to accounts with a "USER"
+    role, and the webapp/views/accounts/admin directory is restricted to accounts with a "ADMIN" role. Security annotations are 
     also placed on the service/UserSessionBean, though there is currently nothing in the application that depends on them.</p>
     <p>The src/test/java/test/SiteTest class uses arquillian, done, and graphene to test the site through the web pages.
     These testers depend on id's and parameters in the jsf/html files to find input fields and submit buttons. It will 

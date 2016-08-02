@@ -5,11 +5,11 @@
     xmlns:p="http://primefaces.org/ui">
 <ui:define name="title"><h:outputText value="Java EE MVC - User Account"/></ui:define>
 <ui:define name="content">
-<ui:fragment rendered="#{!principal.loggedIn}">
-  <ui:include src="/views/loginsignup.xhtml" />
+<ui:fragment rendered="#{!accountsController.loggedIn}">
+  <ui:include src="/views/accounts/loginsignup.xhtml" />
 </ui:fragment>
-<ui:fragment rendered="#{principal.loggedIn}">
-  <ui:include src="/views/user/userdetail.xhtml" />
+<ui:fragment rendered="#{accountsController.loggedIn}">
+  <ui:include src="/views/accounts/user/userdetail.xhtml" />
 </ui:fragment>
 </ui:define>
 </ui:composition>

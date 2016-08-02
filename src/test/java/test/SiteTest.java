@@ -32,13 +32,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import controller.*;
-import controller.user.Admin;
-import controller.user.ChangePassword;
-import controller.user.Login;
-import controller.user.Logout;
-import controller.user.Principal;
-import controller.user.Register;
-import controller.user.UserDetail;
 import model.*;
 import service.*;
 import util.*;
@@ -70,14 +63,8 @@ public class SiteTest {
                     UserSessionBean.class, 
                     RoleSingletonBean.class, 
                     Resources.class, 
-                    Admin.class, 
-                    ChangePassword.class, 
-                    Index.class, 
-                    Login.class, 
-                    Logout.class, 
-                    Principal.class, 
-                    Register.class, 
-                    UserDetail.class
+                    AccountsController.class, 
+                    IndexController.class 
             )
             .addAsResource(new File("src/main/resources/META-INF/persistence.xml"), "META-INF/persistence.xml")
             .addAsResource(new File("src/main/resources/META-INF/create-script.sql"), "META-INF/create-script.sql")
@@ -110,7 +97,7 @@ public class SiteTest {
         assertEquals("There are 1 users", numberOfUsers.getText().trim());
         
         // login should fail
-        // browser.get(deploymentUrl.toExternalForm() + "views/account.xhtml");
+        // browser.get(deploymentUrl.toExternalForm() + "views/accounts/accounts.xhtml");
         guardHttp(accountButton).click();
         loginsignupEmail.sendKeys("karl@karl.com");
         loginsignupPassword.sendKeys("1234");
@@ -118,7 +105,7 @@ public class SiteTest {
         assertEquals("Login Failed!", loginsignupMessages.getText().trim());
 
         // register a new user
-        // browser.get(deploymentUrl.toExternalForm() + "views/register.xhtml");
+        // browser.get(deploymentUrl.toExternalForm() + "views/accounts/register.xhtml");
         // go through error case first
         guardHttp(toRegisterButton).click();
         registerEmail.sendKeys("");
@@ -137,7 +124,7 @@ public class SiteTest {
         guardHttp(registerButton).click();
         assertEquals("Registration Successful!", detailMessages.getText().trim());
 
-        // update details, from /views/account.xhtml
+        // update details, from /views/accounts/accounts.xhtml
         userdetailFirstName.clear();
         userdetailFirstName.sendKeys("Karl");
         userdetailLastName.clear();
@@ -154,12 +141,12 @@ public class SiteTest {
         assertEquals("There are 2 users", numberOfUsers.getText().trim());
 
         // logout
-        // browser.get(deploymentUrl.toExternalForm() + "views/account.xhtml");
+        // browser.get(deploymentUrl.toExternalForm() + "views/accounts/accounts.xhtml");
         guardHttp(accountButton).click();
         guardHttp(logoutButton).click();
         
         // attempt to bypass security to change password
-        browser.get(deploymentUrl.toExternalForm() + "views/user/changepassword.xhtml");
+        browser.get(deploymentUrl.toExternalForm() + "views/accounts/user/changepassword.xhtml");
         assertTrue(loginSubmitButton.isDisplayed());
         // first login with j_security login form
         loginJ_username.sendKeys("karl@karl.com");
@@ -185,15 +172,15 @@ public class SiteTest {
         guardHttp(logoutButton).click();
 
         // login should fail
-        // browser.get(deploymentUrl.toExternalForm() + "views/account.xhtml");
+        // browser.get(deploymentUrl.toExternalForm() + "views/accounts/accounts.xhtml");
         // guardHttp(accountButton).click();
-        loginsignupEmail.sendKeys("admin");
+        loginsignupEmail.sendKeys("admin@test.com");
         loginsignupPassword.sendKeys("admin");
         guardHttp(loginButton).click();
         assertTrue(adminButton.isDisplayed());
 
         // perform admin functions on user
-        // browser.get(deploymentUrl.toExternalForm() + "views/admin/admin.xhtml");
+        // browser.get(deploymentUrl.toExternalForm() + "views/accounts/admin/admin.xhtml");
         guardHttp(adminButton).click();
         guardHttp(promoteButton).click();
         assertEquals("User promoted to administrator", adminMessages.getText().trim());
@@ -203,7 +190,7 @@ public class SiteTest {
         assertEquals("User removed", adminMessages.getText().trim());
 
         // logout
-        // browser.get(deploymentUrl.toExternalForm() + "views/account.xhtml");
+        // browser.get(deploymentUrl.toExternalForm() + "views/accounts/accounts.xhtml");
         guardHttp(accountButton).click();
         guardHttp(logoutButton).click();
 
