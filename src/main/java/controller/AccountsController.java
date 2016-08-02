@@ -17,10 +17,21 @@ import model.User;
 import service.UserSessionBean;
 import util.Resources;
 
+/**
+ * <p>Handles all of the logic for user accounts and security.</p> 
+ * <p>Login, logout, and register user methods.</p>
+ * <p>Methods for JSF pages, get current user, test if the user is an admin or not.</p>
+ * <p>Methods for handling user details and password updates.</p>
+ * <p>Administrator methods for promoting and deleting users.</p>
+ * <p>JSF utility to see if a component has been set to an error state.</p>  
+ * 
+ * @author Karl Nicholas
+ *
+ */
 @ManagedBean
 public class AccountsController {
-    @Inject private FacesContext context;
-    @Inject private UserSessionBean userBean;
+    @Inject private FacesContext facesContext;
+    @Inject private UserSessionBean userService;
     private static final String NAV_ACCOUNTS = "/views/accounts/accounts.xhtml";
     private static final String NAV_ACCOUNTS_REDIRECT = "/views/accounts/accounts.xhtml?faces-redirect=true";
 
@@ -34,7 +45,7 @@ public class AccountsController {
     
     @PostConstruct
     public void postConstruct() {
-        ExternalContext externalContext = context.getExternalContext();
+        ExternalContext externalContext = facesContext.getExternalContext();
         currentUser = (User)externalContext.getSessionMap().get("user");
         // in case went to a specific URL
         if ( currentUser == null ) {
@@ -42,7 +53,7 @@ public class AccountsController {
             java.security.Principal principal = request.getUserPrincipal();
             if ( principal != null ) {
                 try {
-                	currentUser = userBean.findByEmail(principal.getName());
+                	currentUser = userService.findByEmail(principal.getName());
                 } catch (Exception ignored) {
                     // logout whoever and set user to null.
                     try {
@@ -91,17 +102,17 @@ public class AccountsController {
      * @return String navigation to /views/accounts/accounts.xhtml
      */
     public String login() {
-        ExternalContext externalContext = context.getExternalContext();
+        ExternalContext externalContext = facesContext.getExternalContext();
         HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
         if ( request.getUserPrincipal() == null ) {
             try {
             	// Ignorecase is handled by the database, see create.sql.
                 request.login(email, password);
-                currentUser = userBean.findByEmail(email);
+                currentUser = userService.findByEmail(email);
                 externalContext.getSessionMap().put("user", currentUser);                
             } catch (ServletException ignored) {
                 // Handle unknown username/password in request.login().
-                context.addMessage(null, new FacesMessage("Login Failed!", ""));
+                facesContext.addMessage(null, new FacesMessage("Login Failed!", ""));
                 return null;
             }
         } 
@@ -146,13 +157,13 @@ public class AccountsController {
      * @return Naviation to /views/accounts/accounts.xhtml
      */
     public String logout() {
-        ExternalContext externalContext = context.getExternalContext();
+        ExternalContext externalContext = facesContext.getExternalContext();
         HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
         try {
             request.logout();
             externalContext.invalidateSession();
         } catch (ServletException e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Logout Failed!", Resources.getRootErrorMessage(e) ));
+            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Logout Failed!", Resources.getRootErrorMessage(e) ));
             return null;
         }
         // navigate
@@ -168,24 +179,24 @@ public class AccountsController {
         try {
             // save the password before encoding
             String password = newUser.getPassword();
-            currentUser = userBean.encodeAndSave(newUser);
+            currentUser = userService.encodeAndSave(newUser);
             if ( currentUser == null ) {
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registration failed!", "User Already Exists" ));
+                facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registration failed!", "User Already Exists" ));
                 return null;
             } else {
                 // login user            
-                ExternalContext externalContext = context.getExternalContext();
+                ExternalContext externalContext = facesContext.getExternalContext();
                 HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
             	// Ignorecase is handled by the database, see create.sql.
                 request.login(newUser.getEmail(), password);
                 externalContext.getSessionMap().put("user", currentUser);
             }
         } catch (Exception e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Registration failed!", Resources.getRootErrorMessage(e) ));
+            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Registration failed!", Resources.getRootErrorMessage(e) ));
             return null;
         }
         // navigate
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registration Successful!", "" ));
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Registration Successful!", "" ));
         return NAV_ACCOUNTS;
     }
 
@@ -212,17 +223,17 @@ public class AccountsController {
         try {
             // check password confirmation.
             if ( !currentUser.getPassword().equals(passwordConfirmation) ) {
-                context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Passwords Must Match", ""));
+                facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Passwords Must Match", ""));
                 return null;
             }
             // update user
-            userBean.merge(userBean.updatePassword(currentUser));
+            userService.merge(userService.updatePassword(currentUser));
         } catch (Exception e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Update failed", Resources.getRootErrorMessage(e)));
+            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Update failed", Resources.getRootErrorMessage(e)));
             return null;
         }
         // message and navigation
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Password Updated", ""));
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Password Updated", ""));
         return NAV_ACCOUNTS;
     }
 
@@ -249,12 +260,12 @@ public class AccountsController {
     public String update() {
         try {
             // update user
-            userBean.merge(currentUser);
+            userService.merge(currentUser);
         } catch (Exception e) {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Update unsuccessful", Resources.getRootErrorMessage(e)));
+            facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Update unsuccessful", Resources.getRootErrorMessage(e)));
             return null;
         }
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "User Info Updated", ""));
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "User Info Updated", ""));
         return NAV_ACCOUNTS;
     }
 
@@ -263,7 +274,7 @@ public class AccountsController {
      * @return List of users
      */
     public List<User> getUsers() {
-        return userBean.findAll();
+        return userService.findAll();
     }
 
     /**
@@ -272,8 +283,8 @@ public class AccountsController {
      */
     public void removeUser(Long id) {
         if ( currentUser.getId() == id ) throw new RuntimeException("Cannot change current user!");
-        userBean.delete(id);
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "User removed", "") );
+        userService.delete(id);
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "User removed", "") );
     }
 
     /**
@@ -282,8 +293,8 @@ public class AccountsController {
      */
     public void promoteUser(Long id) {
         if ( currentUser.getId() == id ) return;
-        userBean.promoteUser(id);
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "User promoted to administrator", "") );
+        userService.promoteUser(id);
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "User promoted to administrator", "") );
     }
 
     /**
@@ -292,8 +303,8 @@ public class AccountsController {
      */
     public void demoteUser(Long id) {
         if ( currentUser.getId() == id ) return;
-        userBean.demoteUser(id);
-        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "User demoted to user only", "") );
+        userService.demoteUser(id);
+        facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "User demoted to user only", "") );
     }
 
 	/**
