@@ -1,5 +1,5 @@
 /**
- * Database entities.
+ * Database entities. Defined User and Role.
  * @author Karl Nicholas
  *
  */
