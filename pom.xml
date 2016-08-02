@@ -140,11 +140,6 @@
       <artifactId>xml-apis</artifactId>
       <version>1.4.01</version>
     </dependency>
-    <dependency>
-      <groupId>org.primefaces</groupId>
-      <artifactId>primefaces</artifactId>
-      <version>5.3</version>
-    </dependency>
   </dependencies>
   <build>
     <!-- Maven will append the version to the finalName (which is the name given to the generated war, and hence the context root) -->

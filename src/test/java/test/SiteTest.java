@@ -52,10 +52,10 @@ public class SiteTest {
         
         return ShrinkWrap.create(WebArchive.class, "jsec.war")
             .addAsLibraries(
-                pom.resolve("org.webjars:bootstrap:3.3.5").withoutTransitivity().as(JavaArchive.class)
+                pom.resolve("org.webjars:bootstrap:3.3.7").withoutTransitivity().as(JavaArchive.class)
             )
             .addAsLibraries(
-                pom.resolve("org.webjars:jquery:1.11.3").withoutTransitivity().as(JavaArchive.class)
+                pom.resolve("org.webjars:jquery:1.12.4").withoutTransitivity().as(JavaArchive.class)
             )
             .addClasses(
                     User.class, 
