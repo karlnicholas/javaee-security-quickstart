@@ -53,7 +53,7 @@ public class AccountsController {
             java.security.Principal principal = request.getUserPrincipal();
             if ( principal != null ) {
                 try {
-                	currentUser = userService.findByEmail(principal.getName());
+                    currentUser = userService.findByEmail(principal.getName());
                 } catch (Exception ignored) {
                     // logout whoever and set user to null.
                     try {
@@ -67,34 +67,34 @@ public class AccountsController {
         newUser = new User();
     }
 
-	/**
-	 * True if a user is logged in.
-	 * 
-	 * @return True if Logged In
-	 */
-	public boolean isLoggedIn() {
-	    return currentUser != null;
-	}
-	
-	/**
-	 * True if a user has the ADMIN role.
-	 * 
-	 * @return True if ADMIN
-	 */
-	public boolean isAdmin() {
-	    if ( currentUser == null ) return false;
-	    return currentUser.isAdmin();
-	}
-	
-	/**
-	 * Currently logged user or null.
-	 *  
-	 * @return User
-	 */
-	public User getCurrentUser() {
-	    return currentUser;
-	}
-	
+    /**
+     * True if a user is logged in.
+     * 
+     * @return True if Logged In
+     */
+    public boolean isLoggedIn() {
+        return currentUser != null;
+    }
+    
+    /**
+     * True if a user has the ADMIN role.
+     * 
+     * @return True if ADMIN
+     */
+    public boolean isAdmin() {
+        if ( currentUser == null ) return false;
+        return currentUser.isAdmin();
+    }
+    
+    /**
+     * Currently logged user or null.
+     *  
+     * @return User
+     */
+    public User getCurrentUser() {
+        return currentUser;
+    }
+    
 
     /**
      * Login a user using the email and password fields.
@@ -106,7 +106,7 @@ public class AccountsController {
         HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
         if ( request.getUserPrincipal() == null ) {
             try {
-            	// Ignorecase is handled by the database, see create.sql.
+                // Ignorecase is handled by the database, see create.sql.
                 request.login(email, password);
                 currentUser = userService.findByEmail(email);
                 externalContext.getSessionMap().put("user", currentUser);                
@@ -187,7 +187,7 @@ public class AccountsController {
                 // login user            
                 ExternalContext externalContext = facesContext.getExternalContext();
                 HttpServletRequest request = (HttpServletRequest) externalContext.getRequest();
-            	// Ignorecase is handled by the database, see create.sql.
+                // Ignorecase is handled by the database, see create.sql.
                 request.login(newUser.getEmail(), password);
                 externalContext.getSessionMap().put("user", currentUser);
             }
@@ -307,19 +307,19 @@ public class AccountsController {
         facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "User demoted to user only", "") );
     }
 
-	/**
-	 * Method to determine whether a component has a validation error condition.
-	 * 
-	 * @author http://stackoverflow.com/questions/24329504/how-to-check-if-jsf-component-is-valid-in-xhtml
-	 * @param clientId of component, e.g. id="test"
-	 * @return true if no validation problem.
-	 */
-	public boolean isValid(String clientId) {
+    /**
+     * Method to determine whether a component has a validation error condition.
+     * 
+     * @author http://stackoverflow.com/questions/24329504/how-to-check-if-jsf-component-is-valid-in-xhtml
+     * @param clientId of component, e.g. id="test"
+     * @return true if no validation problem.
+     */
+    public boolean isValid(String clientId) {
         UIComponent comp = FacesContext.getCurrentInstance().getViewRoot().findComponent(clientId);
         if(comp instanceof UIInput) {
             return ((UIInput)comp).isValid();
         }
         throw new IllegalAccessError();
     }
-	
+    
 }
