@@ -3,7 +3,7 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.jboss.org/schema/jbossas
     http://www.jboss.org/schema/jbossas/jboss-web_7_2.xsd">
-   <!-- Configure usage of the security domain "javaee-security-quickstart" -->
-   <security-domain>javaee-security-quickstart</security-domain>
+   <!-- Configure usage of the security domain "java-security-quickstart" -->
+   <security-domain>java-security-quickstart</security-domain>
    <disable-audit>true</disable-audit>
 </jboss-web>
