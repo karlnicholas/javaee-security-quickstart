@@ -9,7 +9,7 @@ swarm:
         use-java-context: true 
   security:
     security-domains:
-      java-security-quickstart:
+      javaee-security-quickstart:
         classic-authentication:
           login-modules:
             defaultRoleDatabaseModule:
