@@ -34,6 +34,7 @@
     <!-- PhantomJS will be our default browser if no profile is specified -->
     <browser>phantomjs</browser>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <version.wildfly.swarm>2018.5.0</version.wildfly.swarm>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -170,7 +171,6 @@
         <version>3.0.1</version>
       </extension>
     </extensions>
-
     <pluginManagement>
       <plugins>
         <plugin>
@@ -237,6 +237,39 @@
       <properties>
         <browser>firefox</browser>
       </properties>
+    </profile>
+    <profile>
+      <id>swarm</id>
+      <dependencies>
+        <dependency>
+          <groupId>com.h2database</groupId>
+          <artifactId>h2</artifactId>
+          <version>1.4.197</version>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.wildfly.swarm</groupId>
+            <artifactId>wildfly-swarm-plugin</artifactId>
+            <version>${version.wildfly.swarm}</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>package</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>2.22.0</version>
+            <configuration>
+              <skip>true</skip>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
   </profiles>
 </project>
